@@ -10,7 +10,7 @@ class ProductCategories extends Model
     use HasFactory;
     protected $table = 'product_categories';
 
-    protected $fillable = ['name']; // Minimal untuk kolom 'name'
+    protected $fillable = ['name_categories'];
     public function products()
     {
         return $this->hasMany(Products::class, 'product_category_id');

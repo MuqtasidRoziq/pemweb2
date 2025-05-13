@@ -1,4 +1,4 @@
-<x-layouts.app :title="'Tambah Produk Baru'">
+<x-layouts.app :title="__('Tambah Produk')">
     <div class="relative mb-6 w-full">
         <flux:heading size="xl">Tambah Produk Baru</flux:heading>
         <flux:subheading size="lg" class="mb-6">Buat produk baru untuk toko Anda</flux:subheading>
@@ -77,6 +77,9 @@
                 <flux:text color="red" size="sm" class="mt-1">{{ $message }}</flux:text>
             @enderror
         </div>
-        <flux:button type="submit" variant="primary" color="blue">Buat Produk</flux:button>
+        <div class="button" style="display: flex; gap: 10px; justify-content: center;">
+            <flux:button wire:click="save" :loading="false" type="submit" variant="primary" color="blue">Simpan</flux:button>
+            <flux:button href="{{ route('products.index') }}" >Simpan</flux:button>
+        </div>
     </form>
 </x-layouts.app>

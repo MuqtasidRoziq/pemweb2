@@ -15,7 +15,8 @@ class ProductsController extends Controller
     public function index()
     {
         $products = Products::all();
-        return view('products.index', ['products' => $products]);
+        $categories = ProductCategories::all();
+        return view('products.index', ['products' => $products, 'categories' => $categories]);
     }
 
     /**
@@ -32,7 +33,6 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
-// Validasi data dari formulir
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'slug' => 'required|string|unique:products,slug|max:255',
@@ -55,6 +55,7 @@ class ProductsController extends Controller
             \Log::error('Error in store: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Terjadi kesalahan saat menyimpan produk. Cek log untuk detail.');
         }
+        
     }
 
     /**
