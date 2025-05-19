@@ -20,6 +20,11 @@ class Products extends Model
         'is_active',
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'slug'; // Gunakan slug untuk route binding
+    }
+    
     public function category()
     {
         return $this->belongsTo(ProductCategories::class, 'product_category_id');

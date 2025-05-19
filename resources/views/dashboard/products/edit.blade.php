@@ -43,7 +43,7 @@
         <div class="mb-4">
             <label for="price" class="block text-primary-700 font-medium mb-1">Price</label>
             <flux:input type="number" name="price" id="price" step="0.01" placeholder="Enter price"
-                value="{{ old('price', $product->price) }}" />
+                value="{{ old('price', $product->price) }}" max="99999999999"/>
             @error('price')
                 <flux:text color="red" size="sm" class="mt-1">{{ $message }}</flux:text>
             @enderror
@@ -51,7 +51,7 @@
         <div class="mb-4">
             <label for="stock" class="block text-primary-700 font-medium mb-1">Stock</label>
             <flux:input type="number" name="stock" id="stock" placeholder="Enter stock quantity"
-                value="{{ old('stock', $product->stock) }}" />
+                value="{{ old('stock', $product->stock) }}" max="99999999999" />
             @error('stock')
                 <flux:text color="red" size="sm" class="mt-1">{{ $message }}</flux:text>
             @enderror
@@ -78,7 +78,7 @@
             @enderror
         </div>
         <div class="mb-4">
-            <label for="is_active" class="block text-gray-700 font-medium mb-1">Status Produk</label>
+            <label for="is_active" class="block  font-medium mb-1">Status Produk</label>
             <flux:select name="is_active" id="is_active">
                 <option value="1" {{ old('is_active', $product->is_active) ? 'selected' : '' }}>Tersedia</option>
                 <option value="0" {{ old('is_active', $product->is_active) ? '' : 'selected' }}>Tidak Tersedia</option>
@@ -87,7 +87,7 @@
                 <flux:text color="red" size="sm" class="mt-1">{{ $message }}</flux:text>
             @enderror
         </div>
-        <flux:button type="submit" variant="primary" color="blue">Simpan Perubahan</flux:button>
+        <flux:button type="submit" variant="primary" color="blue">SimpanP</flux:button>
     </form>
 
 </x-layouts.app>

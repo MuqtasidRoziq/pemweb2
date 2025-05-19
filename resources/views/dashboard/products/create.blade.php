@@ -36,14 +36,14 @@
         </div>
         <div class="mb-4">
             <label for="price" class="block text-primary-700 font-medium mb-1">Harga</label>
-            <flux:input type="number" name="price" id="price" step="0.01" placeholder="Masukkan harga" value="{{ old('price') }}" />
+            <flux:input type="number" name="price" id="price" step="0.01" placeholder="Masukkan harga" value="{{ old('price') }}" max="9999999999"/>
             @error('price')
                 <flux:text color="red" size="sm" class="mt-1">{{ $message }}</flux:text>
             @enderror
         </div>
         <div class="mb-4">
             <label for="stock" class="block text-primary-700 font-medium mb-1">Stok</label>
-            <flux:input type="number" name="stock" id="stock" placeholder="Masukkan jumlah stok" value="{{ old('stock') }}" />
+            <flux:input type="number" name="stock" id="stock" placeholder="Masukkan jumlah stok" value="{{ old('stock') }}" max="99999999999"/>
             @error('stock')
                 <flux:text color="red" size="sm" class="mt-1">{{ $message }}</flux:text>
             @enderror

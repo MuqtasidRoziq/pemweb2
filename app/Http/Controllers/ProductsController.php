@@ -16,7 +16,7 @@ class ProductsController extends Controller
     {
         $products = Products::all();
         $categories = ProductCategories::all();
-        return view('products.index', ['products' => $products, 'categories' => $categories]);
+        return view('dashboard.products.index', ['products' => $products, 'categories' => $categories]);
     }
 
     /**
@@ -25,7 +25,7 @@ class ProductsController extends Controller
     public function create()
     {
         $categories = ProductCategories::all();
-        return view('products.create', compact('categories'));
+        return view('dashboard.products.create', compact('categories'));
     }
 
     /**
@@ -61,9 +61,11 @@ class ProductsController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        
+        $product = Products::where('slug',$slug)->firstOrFail();
+        $categories = ProductCategories::all();
+        return view('dashboard.products.show-product', compact('product', 'categories'));
     }
 
     /**
@@ -73,7 +75,7 @@ class ProductsController extends Controller
     {
         $product = Products::findOrFail($id);
         $categories = ProductCategories::all();
-        return view('products.edit', compact('product', 'categories'));
+        return view('dashboard.products.edit', compact('product', 'categories'));
     }
 
     /**
@@ -115,7 +117,7 @@ class ProductsController extends Controller
         try {
             $product = Products::findOrFail($id);
             $product->delete();
-            return redirect()->route('products.index')->with('success', 'Produk berhasil dihapus.');
+            return redirect()->route('dashboard.products.index')->with('success', 'Produk berhasil dihapus.');
         } catch (\Exception $e) {
             \Log::error('Error in destroy: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Terjadi kesalahan saat menghapus produk. Cek log untuk detail.');

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProductCategoriesController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
@@ -11,6 +12,7 @@ Route::get('/', function () {
 
 Route::group(['prefix'=>'dashboard'], function(){
     Route::get('/',[DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('categories', ProductCategoriesController::class)->names('categories');
     Route::resource('products', ProductsController::class)->names('products');
 })->middleware(['auth', 'verified']);
 
