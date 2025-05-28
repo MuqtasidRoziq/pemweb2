@@ -4,6 +4,12 @@
         <flux:subheading size="lg" class="mb-6">Buat produk baru untuk toko Anda</flux:subheading>
         <flux:separator variant="subtle" class="my-4" />
     </div>
+    @if(session()->has('successMessage'))
+        <flux:badge color="lime" class="mb-3 w-full">{{ session()->get('successMessage') }}</flux:badge>
+        <flux:button icon="x-mark" variant="primary"  />
+    @elseif(session()->has('errorMessage'))
+        <flux:badge color="red" class="mb-3 w-full">{{ session()->get('errorMessage') }}</flux:badge>
+    @endif
     <form action="{{ route('products.store') }}" method="POST" class="max-w-lg">
         @csrf
         <div class="mb-4">
@@ -78,7 +84,7 @@
             @enderror
         </div>
         <div class="button" style="display: flex; gap: 10px; justify-content: center;">
-            <flux:button wire:click="save" :loading="false" type="submit" variant="primary" color="blue">Simpan</flux:button>
+            <flux:button type="submit" variant="primary" color="blue">Simpan</flux:button>
             <flux:button href="{{ route('products.index') }}" >Simpan</flux:button>
         </div>
     </form>

@@ -5,6 +5,12 @@
         <flux:separator variant="subtle" class="my-4" />
     </div>
 
+    @if(session()->has('successMessage'))
+        <flux:badge color="lime" class="mb-3 w-full">{{ session()->get('successMessage') }}</flux:badge>
+    @elseif(session()->has('errorMessage'))
+        <flux:badge color="red" class="mb-3 w-full">{{ session()->get('errorMessage') }}</flux:badge>
+    @endif
+    
     <form action="{{ route('products.update', $product->id) }}" method="POST" class="max-w-lg">
         @csrf
         @method('PUT')

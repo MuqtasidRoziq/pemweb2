@@ -6,8 +6,10 @@
     </div>
     <form action="{{ route('categories.store') }}" method="POST">
         @csrf
-        <flux:input class="mb-4 flex justify-" label="Nama Kategori" placeholder="Masukan Nama Kategori"
-            name="name_categories" />
+        <flux:input class="mb-4 flex justify-" label="Nama Kategori" placeholder="Masukan Nama Kategori" name="name_categories" />
+        @error('name_categories')
+            <flux:text color="red" size="sm" class="mt-1">{{ $message }}</flux:text>
+        @enderror
         <flux:button class="flex justify-end" type="submit" variant="primary">Simpan</flux:button>
     </form>
 </div>
